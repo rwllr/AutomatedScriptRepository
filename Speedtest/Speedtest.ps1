@@ -5,6 +5,8 @@ $MinimumUploadSpeed = 5 #What is the minimum expected upload speed in Mbit/ps
 ######### End absolute monitoring values ######
 
 Invoke-Expression(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/MScholtes/TechNet-Gallery/master/Transpose-Object/Transpose-Object.ps1')
+
+
  
 #Replace the Download URL to where you've uploaded the ZIP file yourself. We will only download this file once. 
 #Latest version can be found at: https://www.speedtest.net/nl/apps/cli
@@ -56,4 +58,4 @@ if (!$SpeedtestHealth) {
     $SpeedtestHealth = "Healthy"
 }
 $SpeedtestHealth
-New-Object psobject -Property $SpeedtestObj | Transpose-Object | ConvertTo-Html -Fragment
+(New-Object psobject -Property $SpeedtestObj | Transpose-Object | ConvertTo-Html -Fragment) -replace "(?sm)<th>.*</th>", ""
